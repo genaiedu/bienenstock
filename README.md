@@ -9,7 +9,8 @@ Eine eigenständige deutschsprachige Lernapp von Dr. Claus Unterberg. Eine offen
 ## Bedienung
 
 - Zellen anklicken oder im Zellinspektor auswählen. Der Canvas ist fokussierbar; Pfeiltasten wechseln die ausgewählte Zelle.
-- Pause, doppelte Geschwindigkeit und reproduzierbarer Reset.
+- Start im 50-fach langsameren Beobachtungstempo (ein Tick alle 5 Sekunden). Sechs Tempostufen bis 100-fach langsamer, Pause, Einzelschritt, 2× des gewählten Tempos und reproduzierbarer Reset.
+- „Eine Nektarzelle beobachten“ wählt eine frische Nektarzelle und zeigt den sinkenden Wasseranteil mit Balken. Je Zelle höchstens ein Fächelschritt pro Tick.
 - Die Populationsgrenze (30–400) begrenzt den Schlupf; sie erzeugt und entfernt keine erwachsenen Bienen.
 - Ressourcen, Wetterstabilität und Krankheits-/Räuberdruck wirken live. Ein Stress-Test überschreibt diese drei Umweltwerte für 30 Tage mit 10/10/80 Prozent; anschließend gelten die gewählten Werte wieder.
 - Optional: Bienenpfade, Temperaturzonen und Ressourcenflüsse; Vollbild mit Zellinspektor.
@@ -17,7 +18,7 @@ Eine eigenständige deutschsprachige Lernapp von Dr. Claus Unterberg. Eine offen
 
 ## Modell
 
-10 fixe Logikticks pro Sekunde, 0,1 Simulationstag pro Tick. Rendering unabhängig per requestAnimationFrame. Unsichtbare Browser-Tabs pausieren die Simulation. Reset verwendet denselben Zufallsstart.
+Im Originaltempo 10 fixe Logikticks pro Sekunde, 0,1 Simulationstag pro Tick. Der zusätzliche Beobachtungsfaktor verlangsamt die Logik; 50-fach langsamer ist die Vorauswahl. Die Darstellung bleibt flüssig. Rendering unabhängig per requestAnimationFrame. Unsichtbare Browser-Tabs pausieren die Simulation. Reset verwendet denselben Zufallsstart.
 
 Ei 30, Larve 60, Puppe 120 Ticks. Altersabhängige Arbeiterinnenrollen. 80 Startwaben, maximal 1.200 Waben, maximal 400 erwachsene Arbeiterinnen. Die Königin ist ein Eiablageprozess, Drohnen fehlen. Weitere Modellgrenzen sind in der App dokumentiert.
 
@@ -32,7 +33,7 @@ node test-model.cjs
 node test-ui.cjs
 ```
 
-16 Bedienaktionen werden zusätzlich über ihre echten Handler mit isoliertem Zustand geprüft; der Vollbildadapter wird mit einem zustandsbehafteten DOM-Ersatz geprüft.
+19 Bedienaktionen werden zusätzlich über ihre echten Handler mit isoliertem Zustand geprüft; der Vollbildadapter wird mit einem zustandsbehafteten DOM-Ersatz geprüft.
 
 Die Modelltests prüfen unter anderem 250 Tage gesunden Verlauf, Stoffbilanzen nach jedem Tick, Honigherkunft, Mutationsproben der Invarianten, Stressbericht, Hunger, Kollaps, Populations- und Wabengrenzen sowie zwölf alternative Umwelt-/Zufallsszenarien. Die App zeigt zusätzlich eine laufende Systemprüfung einschließlich realer Tick-/Frame-Messung und einen isolierten Starttest.
 
