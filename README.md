@@ -21,7 +21,7 @@ Eine eigenständige deutschsprachige Lernapp von Dr. Claus Unterberg. Eine offen
 
 Ei 30, Larve 60, Puppe 120 Ticks. Altersabhängige Arbeiterinnenrollen. 80 Startwaben, maximal 1.200 Waben, maximal 400 erwachsene Arbeiterinnen. Die Königin ist ein Eiablageprozess, Drohnen fehlen. Weitere Modellgrenzen sind in der App dokumentiert.
 
-Nektar und Honig werden als Zucker-Trockenmasse bilanziert. Pollen, freies Wasser und Nektarwasser besitzen eigene Konten. Zugänge inklusive Anfangsvorrat = Lager + Transit + Abgänge. Es werden nur ganze Einheiten verwendet. Verluste und Verdunstung sind explizite Abgänge. Honigzellen müssen nachweislich eine Nektarphase und mehrere Fächelschritte durchlaufen haben und unter 20 Prozent Wasser enthalten. Am Anfang gibt es keinen Honig.
+Nektar und Honig werden als Zucker-Trockenmasse bilanziert. Pollen, freies Wasser und Nektarwasser besitzen eigene Konten. Larven erhalten ausschließlich Nektar, Pollen und freies Wasser; Erwachsene können Honig nutzen. Stockarbeiterinnen halten eine Nektarreserve für die Brut zurück. Zugänge inklusive Anfangsvorrat = Lager + Transit + Abgänge. Es werden nur ganze Einheiten verwendet. Verluste und Verdunstung sind explizite Abgänge. Honigzellen müssen nachweislich eine Nektarphase und mehrere Fächelschritte durchlaufen haben und unter 20 Prozent Wasser enthalten. Am Anfang gibt es keinen Honig.
 
 Ein Kollaps stoppt die Zeit und zeigt genau die letzten 50 Modellschritte. Der Stressbericht zeigt Dauer, Überleben, Nettovorratsänderung und Verluste.
 
@@ -29,9 +29,12 @@ Ein Kollaps stoppt die Zeit und zeigt genau die letzten 50 Modellschritte. Der S
 
 ```sh
 node test-model.cjs
+node test-ui.cjs
 ```
 
-Die Tests prüfen unter anderem 250 Tage gesunden Verlauf, Stoffbilanzen nach jedem Tick, Honigherkunft, Mutationsproben der Invarianten, Stressbericht, Hunger, Kollaps, Populations- und Wabengrenzen sowie zwölf alternative Umwelt-/Zufallsszenarien. Die App zeigt zusätzlich eine laufende Systemprüfung einschließlich realer Tick-/Frame-Messung und einen isolierten Starttest.
+16 Bedienaktionen werden zusätzlich über ihre echten Handler mit isoliertem Zustand geprüft; der Vollbildadapter wird mit einem zustandsbehafteten DOM-Ersatz geprüft.
+
+Die Modelltests prüfen unter anderem 250 Tage gesunden Verlauf, Stoffbilanzen nach jedem Tick, Honigherkunft, Mutationsproben der Invarianten, Stressbericht, Hunger, Kollaps, Populations- und Wabengrenzen sowie zwölf alternative Umwelt-/Zufallsszenarien. Die App zeigt zusätzlich eine laufende Systemprüfung einschließlich realer Tick-/Frame-Messung und einen isolierten Starttest.
 
 ## Veröffentlichung
 
