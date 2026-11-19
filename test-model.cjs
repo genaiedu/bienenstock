@@ -17,6 +17,7 @@ let stages = new Map();
 for (let i = 0; i < 2500; i++) {
   const old = baseline.cells.map(c => ({ type:c.type, fan:c.fanTicks, ticks:c.nectarTicks }));
   BeeLab.tick(baseline); verify(baseline);
+  for (const c of baseline.cells) if (old[c.id]) assert.ok(c.fanTicks <= old[c.id].fan + 1, 'At most one fanning step per cell and tick');
   for (const c of baseline.cells) if (c.type === 6 && old[c.id]?.type !== 6) {
     assert.equal(old[c.id]?.type, 5, 'Honey must come from nectar');
     assert.ok(c.fanTicks >= 2 && c.nectarTicks >= 2);
@@ -27,6 +28,7 @@ assert.ok(!baseline.collapsed, 'Healthy baseline must remain viable for 250 days
 assert.ok(baseline.cells.length > 80);
 assert.ok(stages.size > 20);
 assert.ok(baseline.births > 0);
+const manual=BeeLab.create();BeeLab.control(manual,'tempo',.01);BeeLab.control(manual,'step');assert.equal(manual.tick,1);assert.equal(manual.paused,true);BeeLab.control(manual,'step');assert.equal(manual.tick,2);assert.equal(manual.paused,true);
 const pause = baseline.tick;
 BeeLab.control(baseline, 'pause'); BeeLab.tick(baseline); assert.equal(baseline.tick, pause);
 BeeLab.control(baseline, 'pause'); BeeLab.control(baseline, 'speed'); assert.equal(baseline.speed, 2);
